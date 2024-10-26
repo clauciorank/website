@@ -1,22 +1,7 @@
 import streamlit as st
-
-# Information dictionary with translations
-about_me_info = {
-    "English": {
-        "title": "About Me",
-        "description": (
-            "Welcome! I'm Your Name, a Data Scientist with a background in physiology and a passion for automation and AI. "
-            "I specialize in data analysis, machine learning, and have a strong interest in applied AI solutions."
-        )
-    },
-    "Portuguese": {
-        "title": "Sobre Mim",
-        "description": (
-            "Bem-vindo! Sou Seu Nome, um Cientista de Dados com formação em fisiologia e paixão por automação e IA. "
-            "Eu me especializo em análise de dados, aprendizado de máquina e tenho um forte interesse em soluções de IA aplicadas."
-        )
-    }
-}
+from text_files.about_me import about_me_info
+from text_files.skills import skills_title, skills, skills_description
+from text_files.education import display_education
 
 def display_about_page(language):
     st.title("Claucio Antonio Rank Filho")
@@ -28,20 +13,14 @@ def display_about_page(language):
         st.title(about_me_info[language]["title"])
         st.write(about_me_info[language]["description"])
 
-    st.header("Skills")
+    # Skills
+    st.title(skills_title[language])
+    st.write(skills_description[language])
 
-    st.write(
-        "I have experience with the following tools and technologies:"
-    )
+    # Work Experience
 
-    st.write(
-        "- **Programming Languages**: Python, SQL"
-    )
 
-    st.write(
-        "- **Data Analysis Libraries**: Pandas, Numpy, Scipy, Scikit-learn, Statsmodels"
-    )
-
-    st.write(
-        "- **Data Visualization Libraries**: Matplotlib, Seaborn, Plotly, Streamlit"
-    )
+    # Education
+    st.title("Education")
+    education_info = display_education(language)
+    st.write(education_info)
